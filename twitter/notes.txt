@@ -1,0 +1,5 @@
+Slattbot has OAuth 2.0 Client enabled
+App Permissions
+    Read & Write
+    Web app, Automated App, or Bot
+Twitter API v2 free access
