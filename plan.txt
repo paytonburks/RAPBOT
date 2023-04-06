@@ -1,0 +1,6 @@
+create model for thug using word by word tf model
+cloud schedule output tweets
+automate a reply to any reply or quote tweet
+
+
+

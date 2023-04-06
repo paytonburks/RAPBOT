@@ -1,0 +1,50 @@
+{
+    "os": "Windows-10-10.0.19041-SP0",
+    "python": "3.8.3",
+    "heartbeatAt": "2023-04-04T20:50:19.493745",
+    "startedAt": "2023-04-04T20:50:18.181288",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "c:/Users/Payton/Documents/CS325/RAPBOT/thugAI_trans.py",
+    "codePath": "thugAI_trans.py",
+    "git": {
+        "remote": "https://github.com/paytonburks/RAPBOT.git",
+        "commit": "20db336bbc21d0eac08580e0e644a2231807bb5e"
+    },
+    "email": "payton.burks7@gmail.com",
+    "root": "C:/Users/Payton/Documents/CS325/RAPBOT",
+    "host": "Payton",
+    "username": "Payton",
+    "executable": "C:\\Users\\Payton\\anaconda3\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 1494.0,
+        "min": 0.0,
+        "max": 1992.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1494.0,
+            "min": 0.0,
+            "max": 1992.0
+        }
+    ],
+    "disk": {
+        "total": 475.82519149780273,
+        "used": 240.73476791381836
+    },
+    "gpu": "GeForce MX150",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "GeForce MX150",
+            "memory_total": 2147483648
+        }
+    ],
+    "memory": {
+        "total": 15.84640884399414
+    }
+}
