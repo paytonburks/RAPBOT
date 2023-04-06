@@ -22,7 +22,7 @@ def main():
     auth = tweepy.OAuth1UserHandler(consumer_key=ck,
                            consumer_secret=cs, access_token=at,
                            access_token_secret=ats)
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit=True)
 
     client_id = client.get_me().data.id
 
