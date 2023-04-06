@@ -1,6 +1,13 @@
 import tensorflow as tf
 import numpy as np
 
+bans = []
+with open(r"C:\Users\Payton\Documents\CS325\RAPBOT\filter.txt") as f:
+    lines = f.readlines()
+    for l in lines:
+        spl = l.split(",")
+        bans.append(spl[0])
+
 def generate_tweet(constant, one_step_model):
     states = None
     next_char = tf.constant([constant])
@@ -16,6 +23,9 @@ def generate_tweet(constant, one_step_model):
 def make_tweet(input):
     one_step = tf.saved_model.load(r"C:\Users\Payton\Documents\CS325\RAPBOT\thug_one_step\one_step")
     tweet = generate_tweet(input, one_step)
+    
+    while any(word in tweet for word in bans):
+        tweet = generate_tweet(input, one_step)
 
     i = -1
     while i >= -(len(tweet)):

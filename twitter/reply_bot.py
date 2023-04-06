@@ -1,4 +1,3 @@
-#Importing modules/libraries
 import tweepy
 import json
 import time
@@ -27,6 +26,8 @@ def main():
 
     client_id = client.get_me().data.id
 
+    print("Replies on")
+
     start_id = 1
     initialisation_resp = client.get_users_mentions(client_id)
     if initialisation_resp.data != None:
@@ -39,18 +40,13 @@ def main():
                 try:
                     print(tweet.text)
                     inp = tweet.text[11:]
-                    print(inp)
                     generated_tweet = gt.make_tweet(inp)
-                    print(generated_tweet)
-                    input("Push anhthii")
                     client.create_tweet(in_reply_to_tweet_id=tweet.id, text=generated_tweet)
                     start_id = tweet.id
                 except:
                     pass
 
-        time.sleep(5)
-
-
+            time.sleep(5)
 
 if __name__ == "__main__":
     main()
