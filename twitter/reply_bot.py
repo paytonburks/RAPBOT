@@ -2,6 +2,7 @@ import tweepy
 import json
 import time
 import generate_tweet as gt
+import pandas as pd
 
 def get_keys():
     with open(r"C:\Users\Payton\Documents\CS325\RAPBOT\twitter\twitter_keys.json") as infile:
@@ -39,14 +40,25 @@ def main():
             for tweet in response.data:
                 try:
                     print(tweet.text)
+                    # user_sent = analysis.analyze_sentiment(tweet)
+                    # df = pd.DataFrame(columns=['tweet', 'sent', 'id', 'type'])
+                    # row = [tweet, user_sent, response.data['id'], 'human_reply']
+                    # df.loc[len(df)] = row
+                    
                     inp = tweet.text[11:]
                     generated_tweet = gt.make_tweet(inp)
-                    client.create_tweet(in_reply_to_tweet_id=tweet.id, text=generated_tweet)
+                    ai_resp = client.create_tweet(in_reply_to_tweet_id=tweet.id, text=generated_tweet)
+
+                    # ai_sent = analysis.analyze_sentiment(generated_tweet)
+                    # row = [generated_tweet, ai_sent, ai_resp.data['id'], 'bot_reply']
+                    # df.loc[len(df)] = row
+                    # df.to_csv(r'C:\Users\Payton\Documents\CS325\RAPBOT\twitter\sentiment.csv', mode='a', index=False, header=False)
+
                     start_id = tweet.id
                 except:
                     pass
 
-            time.sleep(5)
+            time.sleep(60)
 
 if __name__ == "__main__":
     main()

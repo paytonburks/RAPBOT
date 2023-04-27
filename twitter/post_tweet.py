@@ -15,23 +15,13 @@ def get_keys():
 
 def main():
     tweet = gt.make_tweet(input=" ")
-    print(tweet)
 
     ck, cs, at, ats = get_keys()
     client = tweepy.Client(consumer_key=ck, consumer_secret=cs, 
                            access_token=at, access_token_secret=ats)
     
-    inp = input("Do you want to post this tweet? Type Y: ")
-    if inp == "Y":
-        response = client.create_tweet(text=tweet)
-        print(response)
-    elif inp == "E":
-        edited = input("Edited tweet: ")
-        response = client.create_tweet(text=edited)
-    else:
-        return
+    response = client.create_tweet(text=tweet)
+    print(response)
 
-    
 if __name__ == "__main__":
     main()
-    

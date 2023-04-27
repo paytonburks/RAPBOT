@@ -1,6 +1,17 @@
-create model for thug using word by word tf model
-cloud schedule output tweets
-automate a reply to any reply or quote tweet
+sentiment analysis with twitter bots
+-young thug (diehard fanbase)
+-trae young (controversial)
+-ben simmons (overwhelmingly negative)
 
 
+find base positivity for all tweets
+- use huggingface to find avg sentiment (CHECK)
 
+
+can we predict reply sentiment based on initial sentiment, follower count, likes, replies, rts?
+input: the inital tweet and variables
+output: the reply sentiment
+- need to find a way to get output
+
+
+- streamlit live site

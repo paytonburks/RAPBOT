@@ -66,8 +66,5 @@ def entry_point():
     ck, cs, at, ats = get_keys()
     client = tweepy.Client(consumer_key=ck, consumer_secret=cs, 
                            access_token=at, access_token_secret=ats)
-    # response = client.create_tweet(text=tweet)
-    # print(response)
-
-entry_point()
-#download_model()
+    response = client.create_tweet(text=tweet)
+    print(response)

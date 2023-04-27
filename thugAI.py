@@ -93,7 +93,10 @@ if __name__ == "__main__":
     tweets = df['tweet'].\
               str.replace('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})','').\
               str.lower().\
-              str.replace('[^a-z0-9,. ]', '')
+              str.replace('[^a-z0-9,. ]', '').\
+              str.replace(r'\bamp\b', '&').\
+              str.replace(r'\blt\b', '<').\
+              str.replace(r'\bgt\b', '>')
 
     text = ' '.join(tweets)   
     
