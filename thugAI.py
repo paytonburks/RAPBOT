@@ -235,4 +235,3 @@ if __name__ == "__main__":
     end = time.time()
     print(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
     print('\nRun time:', end - start)
-

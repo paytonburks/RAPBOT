@@ -3,7 +3,6 @@ sentiment analysis with twitter bots
 -trae young (controversial)
 -ben simmons (overwhelmingly negative)
 
-
 find base positivity for all tweets
 - use huggingface to find avg sentiment (CHECK)
 
