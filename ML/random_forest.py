@@ -1,7 +1,6 @@
 """
 predict tweet reply sentiment
 predict likes
-predict 
 """
 import pandas as pd
 import numpy as np
@@ -35,62 +34,14 @@ def get_time_label(time_str):
 def main():    
     random.seed(10)
     # read in data
-    df = pd.read_csv("dfs/THUG_FINAL.csv")
-    df = df[df.reply_sentiment.notnull()]
+    df = pd.read_csv("dfs/FINAL.csv")
+    df = df[df.reply_sent.notnull()]
     df = df.reset_index()
+    
     # base input and output data
-    y = df['reply_sentiment']
-    X = df.drop(columns=['Unnamed: 0', 'Unnamed: 0.1', 'ai_reply', 'reply_sentiment', 'index'])
-
-    # preprocessing
-    months = []
-    time_day = []
-    for d in df['date']:
-       l =  d.split(" ")
-       date = l[0]
-       time = l[1].split('+')[0]
-
-       date_obj = datetime.strptime(date, '%Y-%m-%d')
-       months.append(date_obj.strftime('%B'))
-       time_day.append(get_time_label(time))    
-
-    X["time_of_day"] = time_day
-    X['month'] = months
-
-    X = X.drop(columns=["date"])
-
-    # sentiment data
-    tweet_sent = []
-    tweet_score = []
-    reply_sent = []
-    reply_score =  []
-    y_na_ind = []
-    for i in range(len(X['sentiment'])):
-        x = eval(X['sentiment'][i].strip("[]"))
-        x_sent = x['label']
-        x_score = x['score']
-
-        try:
-            y_1 = eval(y[i].strip("[]"))
-            y_sent = y_1['label']
-            y_score = y_1['score']
-        except:
-            y_sent = 'NA'
-            y_score = 'NA'
-            y_na_ind.append(i)
-
-        tweet_sent.append(x_sent)
-        tweet_score.append(x_score)
-        reply_sent.append(y_sent)
-        reply_score.append(y_score)
-
-    X['tweet_sent'] = tweet_sent
-    X['tweet_score'] = tweet_score
-    X = X.drop(['tweet', 'sentiment'], axis=1)
-
-    # what we want to predict
-    y = reply_sent
-
+    y = df['reply_sent']
+    X = df.drop(columns=['reply_score', 'reply_sent', 'date', 'tweet', 'ai_reply', 'index'])
+    
     # convert categorical to numerical
     le = preprocessing.LabelEncoder()
     cat_cols = ['source', 'time_of_day', 'month', 'tweet_sent']
@@ -108,7 +59,6 @@ def main():
     print(accuracy)
 
     return
-
 
 if __name__ == "__main__":
     main()

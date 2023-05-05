@@ -21,7 +21,8 @@ def generate_tweet(constant, one_step_model):
     return result[0].numpy().decode('utf-8')
 
 def make_tweet(input):
-    one_step = tf.saved_model.load(r"C:\Users\Payton\Documents\CS325\RAPBOT\GCPDOWNLOAD\thug_one_step\one_step")
+    one_step = tf.saved_model.load(r"C:\Users\Payton\Documents\CS325\RAPBOT\one_step")
+    print("MODEL LOADED")
     tweet = generate_tweet(input, one_step)
     
     while any(word in tweet for word in bans):
