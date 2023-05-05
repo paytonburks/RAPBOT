@@ -44,7 +44,6 @@ def main():
     plt.xlabel("Tweet Sentiment")
     plt.ylabel("# of Tweets")
     plt.title("Tweets by Sentiment")
-    # plt.show()
     plt.close()
 
     grouped_sent_2017 = df.iloc[:1009].groupby("tweet_sent")
@@ -62,6 +61,8 @@ def main():
         plt.plot(x, a*x+b, color=col[i], linestyle='--', linewidth=1)
         i+=1
     plt.title('All Sentiments')
+    plt.xlabel('Sentiment Strength')
+    plt.ylabel('# Replies')
     plt.savefig('eda/all_sentiment')
     plt.close()
 
@@ -77,6 +78,8 @@ def main():
         plt.plot(x, a*x+b, color=col[i], linestyle='--', linewidth=1)
         # plt.text(0.5, 0.8, , size=12, va='top')
         plt.title('y = ' + '{:.2f}'.format(b) + ' {:.2f}'.format(a) + 'x')
+        plt.xlabel('Sentiment Strength')
+        plt.ylabel('# Replies')
         plt.savefig('eda/'+group+' replies')
         plt.close()
         i+=1
