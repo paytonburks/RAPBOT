@@ -1,9 +1,7 @@
 import streamlit as st
 import pandas as pd
-import matplotlib as plt
 import numpy as np
 import utils
-from sklearn import preprocessing
 
 df = pd.read_csv('dfs/FINAL.csv')
 

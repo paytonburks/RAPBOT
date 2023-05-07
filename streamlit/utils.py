@@ -41,7 +41,7 @@ def generate_tweet(constant, one_step_model):
     result = tf.strings.join(result)
     return result[0].numpy().decode('utf-8')
 
-def random_forest_gen(df, pred=None):    
+def random_forest_gen(df, pred=None):
     random.seed(10)
     # read in data
     df = df[df.reply_sent.notnull()]

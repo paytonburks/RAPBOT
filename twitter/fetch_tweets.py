@@ -50,7 +50,3 @@ def entry_point(request): # request is a Flask request
         insert_rows_to_bq(tweet_rows)
         
     return "Success", 200
-
-if __name__ == "__main__":
-    entry_point(None)
-    
