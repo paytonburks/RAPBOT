@@ -63,7 +63,7 @@ def main():
     plt.title('All Sentiments')
     plt.xlabel('Sentiment Strength')
     plt.ylabel('# Replies')
-    plt.savefig('eda/all_sentiment')
+    plt.savefig('EDA/all_sentiment')
     plt.close()
 
     i=0
@@ -80,7 +80,7 @@ def main():
         plt.title('y = ' + '{:.2f}'.format(b) + ' {:.2f}'.format(a) + 'x')
         plt.xlabel('Sentiment Strength')
         plt.ylabel('# Replies')
-        plt.savefig('eda/'+group+' replies')
+        plt.savefig('EDA/'+group+' replies')
         plt.close()
         i+=1
 
