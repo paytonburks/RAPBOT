@@ -119,5 +119,6 @@ with t4:
     # SlattBot tweet generator
     """)
     prompt = st.text_input("Input a prompt")
-    tweet = utils.slatt_bot_gen(str(prompt))
-    st.text(tweet)
+    if prompt:
+        tweet = utils.slatt_bot_gen(str(prompt))
+        st.text(tweet)
