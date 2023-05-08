@@ -1,8 +1,9 @@
 name: run-EDA
 
 on:
-  schedule: 
-  - cron: '0 8 * * *' # runs at 1 AM PST
+  [push]
+#   schedule: 
+#   - cron: '0 8 * * *' # runs at 1 AM PST
 
 jobs:
   build:
@@ -22,18 +23,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: execute py script # run the run.py to get the latest data
+      - name: execute py script # run EDA
         run: |
           python EDA/eda.py
 
       - name: commit files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git commit -m "run EDA files" -a
-      - name: push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PUSH_TOKEN }}
-          branch: main
+          if ! git diff --quiet; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add -A
+            git commit -m "run EDA files" -a
+            git push
+          fi
+        env:
+          PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
