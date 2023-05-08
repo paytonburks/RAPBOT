@@ -1,9 +1,8 @@
 name: run-EDA
 
 on:
-  [push]
-  #schedule:
-  #  - cron: '0 8 * * *' # runs at 1 AM PST
+  schedule: 
+  - cron: '0 8 * * *' # runs at 1 AM PST
 
 jobs:
   build:
