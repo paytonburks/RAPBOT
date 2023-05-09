@@ -25,23 +25,10 @@ jobs:
       
       - name: post tweet # update files
         env:
-          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+          CONS_KEY: ${{ secrets.CONS_KEY }}
+          CONS_SEC: ${{ secrets.CONS_SEC }}
+          ACC_TOK: ${{ secrets.ACC_TOK }}
+          ACC_TOK_SEC: ${{ secrets.ACC_TOK_SEC }}
         run: |
-          python 
-          
-      - name: execute EDA # run EDA
-        run: |
-          python EDA/eda.py
-
-
-      - name: commit files
-        run: |
-          if ! git diff --quiet; then
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add -A
-            git commit -m "run EDA files" -a
-            git push
-          fi
-        env:
-          PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
+          python post_tweet.py
+    
