@@ -1,0 +1,47 @@
+name: update-all
+
+on:
+   [push] 
+#   schedule: 
+#   - cron: '0 * * * *' # runs hourly
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+        
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+          
+      - name: install python packages
+        run:
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: post tweet # update files
+        env:
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+        run: |
+          python 
+          
+      - name: execute EDA # run EDA
+        run: |
+          python EDA/eda.py
+
+
+      - name: commit files
+        run: |
+          if ! git diff --quiet; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add -A
+            git commit -m "run EDA files" -a
+            git push
+          fi
+        env:
+          PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
