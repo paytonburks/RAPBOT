@@ -1,7 +1,7 @@
 name: update-all
 
 on:
-  [push]
+  [push] #
 #   schedule: 
 #   - cron: '0 8 * * *' # runs at 1 AM PST
 
