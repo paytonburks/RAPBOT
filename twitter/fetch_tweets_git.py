@@ -2,20 +2,20 @@ import os
 from datetime import datetime, timezone, timedelta
 import pandas as pd
 import tweepy
-from google.cloud import bigquery
+# from google.cloud import bigquery
 
-DATASET_ID = "thug_tweet_dataset"
-TABLE_ID = "thug_tweets"
+# DATASET_ID = "thug_tweet_dataset"
+# TABLE_ID = "thug_tweets"
 
-def insert_rows_to_bq(rows):
-    client = bigquery.Client()
-    dataset_ref = client.dataset(DATASET_ID)
-    table_ref = dataset_ref.table(TABLE_ID)
-    errors = client.insert_rows_json(table_ref, rows)
-    if len(errors) == 0:
-        print("SUCCESS")
-    else:
-        print(errors)
+# def insert_rows_to_bq(rows):
+#     client = bigquery.Client()
+#     dataset_ref = client.dataset(DATASET_ID)
+#     table_ref = dataset_ref.table(TABLE_ID)
+#     errors = client.insert_rows_json(table_ref, rows)
+#     if len(errors) == 0:
+#         print("SUCCESS")
+#     else:
+#         print(errors)
 
 def fetch_recent_tweets_for_user(client, user_id, start_time):
     response = client.get_users_tweets(user_id, tweet_fields=["created_at", "public_metrics", "source"], start_time=start_time)
