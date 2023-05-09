@@ -1,9 +1,9 @@
-# pandas 
-# numpy
-# tweepy
-# datetime
-# matplotlib
-# scikit-learn
-# tensorflow==2.12.0
-# transformers==4.27.4
-# torch==2.0.0
+pandas 
+numpy
+tweepy
+datetime
+matplotlib
+scikit-learn
+tensorflow==2.12.0
+transformers==4.27.4
+torch==2.0.0
