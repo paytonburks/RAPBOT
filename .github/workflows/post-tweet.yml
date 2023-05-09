@@ -1,9 +1,9 @@
 name: post-tweet
 
 on:
-   [push] 
-#   schedule: 
-#   - cron: '0 * * * *' # runs hourly
+#   [push] 
+  schedule: 
+  - cron: '0 * * * *' # runs hourly
 
 jobs:
   build:
