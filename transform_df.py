@@ -106,6 +106,3 @@ def thug_final_update():
 
     df.to_csv("dfs/FINAL.csv", index=False)
 
-
-if __name__ == "__main__":
-    thug_final_update()

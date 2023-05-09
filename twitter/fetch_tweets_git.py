@@ -2,7 +2,6 @@ import os
 from datetime import datetime, timezone, timedelta
 import pandas as pd
 import tweepy
-import json
 from google.cloud import bigquery
 
 DATASET_ID = "thug_tweet_dataset"
@@ -34,12 +33,8 @@ def fetch_recent_tweets_for_user(client, user_id, start_time):
 def entry_point(request): # request is a Flask request
     user_id = 238763290
 
-    with open("twitter/twitter_keys.json") as infile:
-        json_obj = json.load(infile)
-        token = json_obj["bearer_token"]
-
     bearer_token = os.environ.get("BEARER_TOKEN")
-    client = tweepy.Client(bearer_token=token)
+    client = tweepy.Client(bearer_token=bearer_token)
     client.get_users_tweets(user_id, tweet_fields=[])
 
     start_time = datetime.now(timezone.utc) - timedelta(hours=24)
@@ -58,9 +53,6 @@ def entry_point(request): # request is a Flask request
         
         df.to_csv('tweets/thugtweets.csv')
 
-    # if len(tweet_rows) > 0:
-    #     insert_rows_to_bq(tweet_rows)
+    return tweet_rows
         
-    return "Success", 200
-
 entry_point(None)

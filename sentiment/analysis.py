@@ -37,7 +37,3 @@ def update():
     print("TIDYING UP") 
     df['reply_sentiment'] = r_sentiment
     df.to_csv("dfs/THUG_FINAL.csv")
-
-if __name__ == "__main__":
-    update()
-
