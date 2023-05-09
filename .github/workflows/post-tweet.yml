@@ -26,7 +26,6 @@ jobs:
           pip install tweepy
           pip install datetime
           pip install tensorflow
-          pip install tensorrt
       
       - name: post tweet # update files
         env:
