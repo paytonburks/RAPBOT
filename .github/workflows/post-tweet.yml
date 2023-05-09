@@ -1,4 +1,4 @@
-name: update-all
+name: post-tweet
 
 on:
    [push] 
@@ -21,7 +21,12 @@ jobs:
       - name: install python packages
         run:
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install pandas
+          pip install matplotlib
+          pip install numpy
+          pip install tweepy
+          pip install datetime
+          pip install transformers
       
       - name: post tweet # update files
         env:
@@ -30,5 +35,5 @@ jobs:
           ACC_TOK: ${{ secrets.ACC_TOK }}
           ACC_TOK_SEC: ${{ secrets.ACC_TOK_SEC }}
         run: |
-          python post_tweet.py
+          python twitter/post_tweet.py
     
