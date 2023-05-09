@@ -86,10 +86,10 @@ with t3:
     """)
     st.write("""Enter some tweet stats
     """)
-    # prompt = st.text_input("Prompt", key=0)
-    # if prompt:
-    #     reply = utils.conversational(prompt)
-    #     st.text(reply)
+    prompt = st.text_input("Prompt", key=0)
+    if prompt:
+        reply = utils.conversational(prompt)
+        st.text(reply)
     likes = st.text_input("Likes", key=1)
     if likes:
         likes = int(likes)
