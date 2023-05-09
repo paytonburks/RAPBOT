@@ -2,6 +2,6 @@ pandas
 matplotlib
 numpy
 tweepy
-os
 datetime
 transformers
+torch
