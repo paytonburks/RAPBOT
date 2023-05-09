@@ -4,3 +4,4 @@ numpy
 tweepy
 datetime
 transformers
+pytorch
