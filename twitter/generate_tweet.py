@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 
 bans = []
-with open(r"C:\Users\Payton\Documents\CS325\RAPBOT\filter.txt") as f:
+with open(r"filter.txt") as f:
     lines = f.readlines()
     for l in lines:
         spl = l.split(",")
@@ -21,7 +21,7 @@ def generate_tweet(constant, one_step_model):
     return result[0].numpy().decode('utf-8')
 
 def make_tweet(input):
-    one_step = tf.saved_model.load(r"C:\Users\Payton\Documents\CS325\RAPBOT\one_step")
+    one_step = tf.saved_model.load(r"one_step")
     print("MODEL LOADED")
     tweet = generate_tweet(input, one_step)
     
