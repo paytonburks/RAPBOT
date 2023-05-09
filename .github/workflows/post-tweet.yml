@@ -1,0 +1,38 @@
+name: post-tweet
+
+on:
+   [push] 
+#   schedule: 
+#   - cron: '0 * * * *' # runs hourly
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+        
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+          
+      - name: install python packages
+        run:
+          python -m pip install --upgrade pip
+          pip install pandas
+          pip install numpy
+          pip install tweepy
+          pip install datetime
+          pip install tensorflow
+      
+      - name: post tweet # update files
+        env:
+          CONS_KEY: ${{ secrets.CONS_KEY }}
+          CONS_SEC: ${{ secrets.CONS_SEC }}
+          ACC_TOK: ${{ secrets.ACC_TOK }}
+          ACC_TOK_SEC: ${{ secrets.ACC_TOK_SEC }}
+        run: |
+          python twitter/post_tweet.py
+    
