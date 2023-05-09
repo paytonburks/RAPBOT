@@ -104,3 +104,15 @@ def slatt_bot_gen(input):
             finished+=c
 
     return tweet[:i]
+
+def conversational(t):
+    print("MAIN")
+    converse = pipeline("conversational")
+    print("LOADED")
+
+    try:
+        c1 = Conversation(t)
+        tmp = converse([c1])
+        return tmp
+    except:
+        return("ERROR")
