@@ -7,9 +7,11 @@ import numpy as np
 from sklearn import preprocessing
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn import tree
 from datetime import datetime
 import random
+import matplotlib.pyplot as plt
 
 
 def get_time_label(time_str):
@@ -30,14 +32,8 @@ def get_time_label(time_str):
             return label
     return "Unknown"
 
-
-def main():    
-    random.seed(10)
-    # read in data
-    df = pd.read_csv("dfs/FINAL.csv")
-    df = df[df.reply_sent.notnull()]
-    df = df.reset_index()
-    
+ 
+def random_forest_gen(df):
     # base input and output data
     y = df['reply_sent']
     X = df.drop(columns=['reply_score', 'reply_sent', 'date', 'tweet', 'ai_reply', 'index'])
@@ -58,7 +54,42 @@ def main():
     accuracy = accuracy_score(y_test, y_pred)
     print(accuracy)
 
-    return
+    return rf
 
+def tweet_reply_pred(df): # Decision tree regressor
+    y = df['replies'].to_list()
+    X = df.drop(columns=['date', 'tweet', 'ai_reply', 'index', 'source', 'time_of_day', 'month'])
+
+    le = preprocessing.LabelEncoder()
+    cat_cols = ['tweet_sent', 'reply_sent']
+    for col in cat_cols:
+        X[col] = le.fit_transform(X[col])
+
+    score = 0
+    while score < 0.4:
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
+        regTree = tree.DecisionTreeRegressor(max_depth=5) # 5 is sweet spot
+        regTree.fit(X_train, y_train)
+        score = regTree.score(X_test, y_test)
+    
+    print(X_test)
+
+    plt.figure(figsize=(90,30))
+    tree.plot_tree(regTree, feature_names=X.columns, fontsize=25, filled=True)
+    plt.savefig('ML/regtree.png')
+    plt.close()
+
+    return regTree, score
+
+def main():    
+    # random.seed(10)
+    # read in data
+    df = pd.read_csv("dfs/FINAL.csv")
+    df = df[df.reply_sent.notnull()]
+    df = df.reset_index()
+    rf = random_forest_gen(df)
+    df_2017 = df.iloc[:1009]
+    tweet_reply_pred(df_2017)
+   
 if __name__ == "__main__":
     main()

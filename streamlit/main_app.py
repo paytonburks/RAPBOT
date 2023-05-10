@@ -108,11 +108,17 @@ with t3:
     if st.button(label="Go"):
         if likes and rep and rts and source and time_of_day and month and tweet_sent and tweet_score:
             row = []
-            row.extend(['', likes, rep, rts, source, '', '',  time_of_day, month, tweet_sent, tweet_score, '', ''])
+            row.extend(['', likes, rep, rts, source, '', '',  time_of_day, month, tweet_sent, tweet_score, tweet_sent, tweet_score])
             df.loc[len(df)] = row
             pred, acc = utils.random_forest_gen(df, pred=row)
+            st.write("""### Reply Sentiment Predictor""")
             st.text("Prediction: "+str(pred))
             st.text("Accuracy: "+str(round(acc, 4)))
+
+            rep_pred, rep_r_score = utils.tweet_reply_pred(df, pred=row)
+            st.write("""### Number of Replies Predictor""")
+            st.text("Predicted # of Replies: "+str(round(rep_pred, 0)))
+            st.text("R-squared: "+str(round(rep_r_score, 4)))
         else: 
             st.write("Error in tweet stat values; try again")    
 
