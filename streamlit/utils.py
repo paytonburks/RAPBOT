@@ -104,7 +104,7 @@ def slatt_bot_gen(input):
         except:
             finished+=c
 
-    return tweet[:i]
+    return input+tweet[:i]
 
 def conversational(t):
     print("MAIN")
