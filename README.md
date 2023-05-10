@@ -4,4 +4,4 @@ A project that trains a model based on @youngthug tweets on twitter. Aims to exp
 
 Workflow runs to fetch new data every 24h from twitter. If new data, models & EDA will retrain and update as data is added to the csv file.
 
-Write up is write-up.ipynb
+Write up is write_up.ipynb
